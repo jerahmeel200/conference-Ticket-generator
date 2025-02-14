@@ -30,7 +30,7 @@ const initialState: State = {
   ticketType: null,
   loading: false,
 };
-const TicketContext = createContext<Value>({
+const Context = createContext<Value>({
   ...initialState,
   dispatch: () => {},
 });
@@ -84,22 +84,22 @@ function reducer(
       return { ...state };
   }
 }
-export default function TicketProvider({ children }: { children: ReactNode }) {
+export default function Provider({ children }: { children: ReactNode }) {
   const [{ status, numTicket, ticketType, loading }, dispatch] = useReducer(
     reducer,
     initialState
   );
   return (
-    <TicketContext.Provider
+    <Context.Provider
       value={{ status, dispatch, numTicket, ticketType, loading }}
     >
       {children}
-    </TicketContext.Provider>
+    </Context.Provider>
   );
 }
 
 export function useTicket() {
-  const context = useContext(TicketContext);
+  const context = useContext(Context);
   if (context === undefined) console.log("Wrong context!");
   return context;
 }

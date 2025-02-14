@@ -1,4 +1,4 @@
-export function TicketSvg() {
+export function Svg() {
   return (
     <svg
       width="300"

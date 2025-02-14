@@ -1,7 +1,7 @@
-import { useTicket } from "../../context/TicketContext";
+import { useTicket } from "../../useContext/Context";
 import Buttons from "./Buttons";
 import Ticket from "./Ticket";
-import TicketHeader from "./TicketHeader";
+import TicketHeader from "./Progress";
 
 export default function Ready() {
   const { dispatch } = useTicket();

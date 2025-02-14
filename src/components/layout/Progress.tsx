@@ -4,7 +4,7 @@ interface HeaderObj {
     step: number;
   };
 }
-export default function TicketHeader({ headerObj }: HeaderObj) {
+export default function Progress({ headerObj }: HeaderObj) {
   return (
     <div className="space-y-3 w-full tracking-wide">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-3 md:gap-4 ">

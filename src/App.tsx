@@ -1,66 +1,52 @@
-import BoxContainer from "./components/layout/BoxContainer";
-import Header from "./components/layout/Header";
- 
- 
- 
-import { useTicket } from "./context/TicketContext";
 import { useEffect } from "react";
-import { ClipLoader  } from "react-spinners";
-import TicketSelection from "./components/layout/TicketSelection";
+import { ClipLoader } from "react-spinners";
+import Container from "./components/layout/Container";
+import Header from "./components/layout/Header";
+import Selection from "./components/layout/Selection";
 import AttendeeDetails from "./components/layout/AttendeeDetails";
 import Ready from "./components/layout/Ready";
+import { useTicket } from "./useContext/Context";
+
 export default function App() {
   const { status, dispatch, loading } = useTicket();
-  useEffect(() => {
-    if (loading) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
 
+  // Handle body scroll when loading state changes
+  useEffect(() => {
+    document.body.style.overflow = loading ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
   }, [loading]);
-  useEffect(
-    function () {
-      const stat = localStorage.getItem("status")
-        ? localStorage.getItem("status")
-        : "first";
-      dispatch({ type: "statusSet", payload: { stats: stat } });
-    },
-    [dispatch]
-  );
-  useEffect(
-    function () {
-      const stat = localStorage.getItem("numkey")
-        ? JSON.parse(localStorage.getItem("numkey")!)
-        : { id: null, ticketNum: 1 };
-      dispatch({
-        type: "selectTicket2",
-        payload: { id: stat.id, ticketNum: stat.ticketNum },
-      });
-    },
-    [dispatch]
-  );
+
+  // Retrieve and set status from localStorage
+  useEffect(() => {
+    const storedStatus = localStorage.getItem("status") || "first";
+    dispatch({ type: "statusSet", payload: { stats: storedStatus } });
+  }, [dispatch]);
+
+  // Retrieve and set ticket details from localStorage
+  useEffect(() => {
+    const storedTicket = localStorage.getItem("key");
+    const ticketData = storedTicket ? JSON.parse(storedTicket) : { id: null, ticketNum: 1 };
+    dispatch({ type: "selectTicket2", payload: { id: ticketData.id, ticketNum: ticketData.ticketNum } });
+  }, [dispatch]);
 
   return (
-    <div className="w-full min-h-screen background flex flex-col items-center gap-12 md:gap-20">
+    <div className="w-full min-h-screen flex flex-col items-center gap-12 md:gap-20 background">
       <Header />
 
-      <div className="w-full flex items-center justify-center ">
-        {loading && (
-          <div className="h-screen top-0 fixed flex items-center justify-center z-[999999] overflow-auto background-ticket  backdrop-blur-[4px] w-full">
-            <ClipLoader  color="#197686" />
-          </div>
-        )}
-        <BoxContainer>
-          {status === "first" && <TicketSelection />}
-          {status === "second" && <AttendeeDetails
- />}
-          {status === "third" && <Ready />}
-        </BoxContainer>
-      </div>
+      {/* Loader Overlay */}
+      {loading && (
+        <div className="fixed top-0 w-full h-screen flex items-center justify-center z-[999999] backdrop-blur-[4px] background-ticket">
+          <ClipLoader color="#197686" />
+        </div>
+      )}
+
+      <Container>
+        {status === "first" && <Selection />}
+        {status === "second" && <AttendeeDetails />}
+        {status === "third" && <Ready />}
+      </Container>
     </div>
   );
 }

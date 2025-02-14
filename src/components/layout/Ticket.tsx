@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ClipLoader  } from "react-spinners";
-import { TicketSvg } from "./TicketSvg";
+import { Svg } from "./Svg";
 
 interface FormData {
   data: {
@@ -23,7 +23,7 @@ export default function Ticket({ data }: FormData) {
         <ClipLoader  color="#197686" />
       ) : (
         <div className="relative">
-          <TicketSvg />
+          <Svg />
 
           <div className="absolute w-[260px]  h-[446px]  -translate-x-1/2 left-1/2  -translate-y-[63%]  flex flex-col items-center   border border-[#24A0B5] rounded-2xl  bg-[#031E21]/10 p-2 md:p-3  text-[#fffff] text-lg z-50  ">
             <div className="flex flex-col items-center gap-3 h-full md:gap-5 ">

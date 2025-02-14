@@ -1,5 +1,5 @@
-import TicketCover from "./TicketCover";
-import TicketHeader from "./TicketHeader";
+import Cover from "./Cover";
+import TicketHeader from "./Progress";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useDropzone } from "react-dropzone";
@@ -14,7 +14,7 @@ import {
 } from "../ui/form";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
-import { useTicket } from "../../context/TicketContext";
+import { useTicket } from "../../useContext/Context";
 import React, { useCallback, useEffect } from "react";
 import useUpload from "../../hooks/useUpload";
 import { ClipLoader  } from "react-spinners";
@@ -118,7 +118,7 @@ export default function AttendeeDetails
   return (
     <>
       <TicketHeader headerObj={{ title: "Attendee Details", step: 2 }} />
-      <TicketCover>
+      <Cover>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
             <div className="rounded-3xl text-[#FAFAFA] border border-[#07373F] bg-[#052228] space-y-8 p-6 pb-12">
@@ -293,7 +293,7 @@ export default function AttendeeDetails
             />
           </form>
         </Form>
-      </TicketCover>
+      </Cover>
     </>
   );
 }
