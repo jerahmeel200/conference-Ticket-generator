@@ -84,7 +84,7 @@ function reducer(
       return { ...state };
   }
 }
-export default function Provider({ children }: { children: ReactNode }) {
+  export default function Provider({ children }: { children: ReactNode }) {
   const [{ status, numTicket, ticketType, loading }, dispatch] = useReducer(
     reducer,
     initialState

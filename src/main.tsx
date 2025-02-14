@@ -7,7 +7,7 @@ import { Toaster } from "./components/ui/toaster";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <Provider>
+      <Provider>
       <App />
       <Toaster />
     </Provider>

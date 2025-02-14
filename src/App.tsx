@@ -11,7 +11,7 @@ export default function App() {
   const { status, dispatch, loading } = useTicket();
 
   // Handle body scroll when loading state changes
-  useEffect(() => {
+    useEffect(() => {
     document.body.style.overflow = loading ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
