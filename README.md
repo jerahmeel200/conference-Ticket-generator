@@ -60,9 +60,9 @@ Then, open `http://localhost:3000` in your browser.
 ```bash
 📦 conference-ticket-generator
 ├── 📂 src
-│   ├── 📄 App.js
-│   ├── 📄 ConferenceTicketGenerator.js
-│   ├── 📄 index.js
+│   ├── 📄 App.ts
+│ 
+│   ├── 📄 main.ts
 │   └── 📂 components
 │         └── 📂 layout
         │    ├── 📄 AttendeeDetails.ts
